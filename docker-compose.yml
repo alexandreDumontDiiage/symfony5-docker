@@ -1,0 +1,24 @@
+version: '3.7'
+services:
+  mysql:
+    image: mysql:5.7
+    ports: ['3306:3306']
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=${ROOT_FOLDER}
+      - MYSQL_USER=root
+      - MYSQL_PASSWORD=mysql
+  php:
+    build:
+      context: ./docker/php
+      args:
+        - ROOT_FOLDER=${ROOT_FOLDER}
+    ports: ['9000:9000']
+    volumes: ['./${ROOT_FOLDER}/:/var/www/${ROOT_FOLDER}:cached']
+  nginx:
+    build:
+      context: ./docker/nginx
+      args:
+        - ROOT_FOLDER=${ROOT_FOLDER}
+    ports: ['80:80']
+    volumes: ['./${ROOT_FOLDER}/:/var/www/${ROOT_FOLDER}:cached']
