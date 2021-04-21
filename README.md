@@ -1,5 +1,5 @@
 # Environnement de développement Symfony5 
-Docker pour faire tourner des applications symfony 5 avec php 8
+Docker pour faire tourner des applications Symfony 5 / PHP 8
 
 ### Prérequis
 * [Docker](https://www.docker.com/)
@@ -17,7 +17,7 @@ Il faut modifier la variable ROOT_FOLDER dans le fichier .env pour qu'il corresp
 
 ### Installation
 
-lancer docker et se connecter au container:
+Lancer docker et se connecter au container:
 ```
  docker-compose up --build
 ```
@@ -25,7 +25,7 @@ lancer docker et se connecter au container:
  docker-compose exec php sh
 ```
 
-installer la dernière version de [Symfony](http://symfony.com/doc/current/setup.html) via composer:
+Installer la dernière version de [Symfony](http://symfony.com/doc/current/setup.html) via composer:
 ```
 # application standard: 
 composer create-project symfony/website-skeleton {nom-du-projet}
@@ -35,12 +35,12 @@ ou
 # microservice, console application ou API:
 composer create-project symfony/skeleton {nom-du-projet}
 ```
-modifier le DATABASE_URL config dans le fichier .env de symfony 
+Modifier le DATABASE_URL config dans le fichier .env de symfony 
 ```
 DATABASE_URL=mysql://root:root@mysql:3306/{nom-du-projet}?serverVersion=5.7
 ```
 
-dans le fichier .env de ce docker, modifier project-folder par le nom du projet:
+Dans le fichier .env de ce docker, modifier project-folder par le nom du projet:
 ```
 ROOT_FOLDER={nom-du-projet}
 ```
