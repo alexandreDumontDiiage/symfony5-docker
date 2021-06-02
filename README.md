@@ -12,8 +12,16 @@ Docker pour faire tourner des applications Symfony 5 / PHP 8
 - [mysql](https://hub.docker.com/_/mysql/) 5.7.+
 
 ### Explications
-L'installation va créer un dossier contenant le projet Symfony à la racine de ce dossier.
-Il faut modifier la variable ROOT_FOLDER dans le fichier .env pour qu'il corresponde au nom du porjet Symfony
+Il faut placer ce dossier à la racine du projet symfony
+Il faut modifier la variable ROOT_FOLDER dans le fichier .env de ce dossier pour qu'il corresponde au nom du projet Symfony
+```
+ROOT_FOLDER={nom-du-projet}
+```
+Penser également à renommer la BDD dans le .env de symfony
+```
+DATABASE_URL=mysql://root:root@mysql:3306/{nom-du-projet}?serverVersion=5.7
+```
+
 
 ### Installation
 
@@ -34,15 +42,6 @@ ou
 ```
 # microservice, console application ou API:
 composer create-project symfony/skeleton {nom-du-projet}
-```
-Modifier le DATABASE_URL config dans le fichier .env de symfony 
-```
-DATABASE_URL=mysql://root:root@mysql:3306/{nom-du-projet}?serverVersion=5.7
-```
-
-Dans le fichier .env de ce docker, modifier project-folder par le nom du projet:
-```
-ROOT_FOLDER={nom-du-projet}
 ```
 
 

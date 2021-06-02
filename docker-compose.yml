@@ -6,19 +6,22 @@ services:
     environment:
       - MYSQL_ROOT_PASSWORD=root
       - MYSQL_DATABASE=${ROOT_FOLDER}
-      - MYSQL_USER=root
-      - MYSQL_PASSWORD=mysql
+      - MYSQL_PASSWORD=password
   php:
     build:
-      context: ./docker/php
+      context: php
       args:
         - ROOT_FOLDER=${ROOT_FOLDER}
     ports: ['9000:9000']
-    volumes: ['./${ROOT_FOLDER}/:/var/www/${ROOT_FOLDER}:cached']
+    volumes: ['..//:/var/www/${ROOT_FOLDER}:cached']
+    links:
+      - mysql:mysql
+    depends_on:
+      - mysql
   nginx:
     build:
-      context: ./docker/nginx
+      context: nginx
       args:
         - ROOT_FOLDER=${ROOT_FOLDER}
     ports: ['80:80']
-    volumes: ['./${ROOT_FOLDER}/:/var/www/${ROOT_FOLDER}:cached']
+    volumes: ['..//:/var/www/${ROOT_FOLDER}:cached']
